@@ -28,7 +28,6 @@ export abstract class KeyValueStore<K, V> {
     return Array.from(this.data.values());
   }
 
-  @computed
   public async ids(): Promise<K[]> {
     return Array.from(this.data.keys());
   }

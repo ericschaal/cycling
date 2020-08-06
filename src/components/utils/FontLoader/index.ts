@@ -6,9 +6,15 @@ import {
   Roboto_300Light,
   Roboto_100Thin,
 } from '@expo-google-fonts/roboto';
+import Logging, { Logger } from "services/Logging";
 
 @component("FontLoader")
 export default class FontLoader {
+  private readonly logger: Logger;
+
+  constructor(logging: Logging) {
+    this.logger = logging.get(FontLoader);
+  }
 
   public async load() {
     await Font.loadAsync({
@@ -16,8 +22,9 @@ export default class FontLoader {
       "roboto-regular": Roboto_400Regular,
       "roboto-light": Roboto_300Light,
       "roboto-thin": Roboto_100Thin,
-      'space-mono': require('../../../assets/fonts/SpaceMono-Regular.ttf'),
+      'space-mono': require('@assets/fonts/SpaceMono-Regular.ttf'),
     });
+    this.logger.info("Finished loading fonts.");
   }
 
 }

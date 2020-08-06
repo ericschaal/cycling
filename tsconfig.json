@@ -14,14 +14,16 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
+      "@screen/*": ["src/ui/screens/*"],
+      "@ioc/*": ["src/utils/ioc/*"],
       "@entity/*": ["src/models/entity/*"],
+      "@components/*": ["src/components/*"],
       "@services/*": ["src/services/*"],
       "@configuration/*": ["src/configuration/*"],
       "@constants/*": ["src/constants/*"],
       "@ui/*": ["src/ui/*"],
-      "@ioc/*": ["src/utils/ioc/*"],
       "@utils/*": ["src/utils/*"],
+      "@assets/*": ["assets/*"],
       "*": ["src/*"]
     }
   }

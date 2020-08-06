@@ -1,5 +1,5 @@
 import service from "@ioc/mappings/service";
-import Database from "@components/Database";
+import Database from "@components/storage/Database";
 import Logging, { Logger } from "@services/Logging";
 import { ObjectType } from "typeorm/common/ObjectType";
 import { EntitySchema } from "typeorm";

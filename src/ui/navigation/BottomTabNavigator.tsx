@@ -8,7 +8,7 @@ import {
   BottomTabParamList,
   TabOneParamList,
   TabTwoParamList,
-} from "../../../types";
+} from "./types";
 import { container } from "tsyringe";
 import UIConfiguration from "configuration/UIConfiguration";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";

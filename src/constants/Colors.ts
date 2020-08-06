@@ -10,7 +10,7 @@ export default {
     tabIconSelected: primary,
   },
   dark: {
-    primary: "#f49739",
+    primary,
     text: "#fff",
     background: "#000",
     tint: primary,

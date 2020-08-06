@@ -6,6 +6,6 @@ import ApplicationConfiguration from "configuration/ApplicationConfiguration";
 export default class LoggingConfiguration {
   constructor(private appConfig: ApplicationConfiguration) {}
 
-  public readonly LogLevel: LogLevelDesc = "debug";
+  public readonly LogLevel: LogLevelDesc = "trace";
   public readonly ansiColorMode: boolean = true;
 }

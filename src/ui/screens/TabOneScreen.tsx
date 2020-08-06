@@ -21,13 +21,6 @@ export default class TabOneScreen extends React.PureComponent {
           lightColor="#eee"
           darkColor="rgba(255,255,255,0.1)"
         />
-        {this.userStore.all.map((user) => {
-          return (
-            <View key={user.id}>
-              <Text>{user.name}</Text>
-            </View>
-          );
-        })}
       </View>
     );
   }

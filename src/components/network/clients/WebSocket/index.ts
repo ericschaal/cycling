@@ -1,4 +1,4 @@
-import NetworkConfiguration from "@configuration/NetworkConfiguration";
+import NetworkConfiguration from "configuration/NetworkConfiguration";
 import component from "@ioc/mappings/component";
 
 @component("WebSocket")

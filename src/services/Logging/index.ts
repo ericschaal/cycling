@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import ansiColor from "ansicolor";
 import prefix from "loglevel-plugin-prefix";
-import log from "loglevel";
+import log, { LogLevelNumbers } from "loglevel";
 import service from "@ioc/mappings/service";
 import LoggingConfiguration from "configuration/LoggingConfiguration";
 import { ComponentType } from "@ioc/types/ComponentType";
@@ -15,9 +15,9 @@ export default class Logging {
 
   constructor(private config: LoggingConfiguration) {
     log.setDefaultLevel(config.LogLevel);
+    log.methodFactory = this.getMethodFactory;
     prefix.reg(log);
-    this.globalLogger = log.getLogger("Global");
-    this.applyPrefix(this.globalLogger);
+    this.globalLogger = this.buildLogger("Global");
   }
 
   private get colorResolver() {
@@ -65,8 +65,22 @@ export default class Logging {
     if (name === undefined) {
       throw new Error("Could not read name from metadata");
     }
+    return this.buildLogger(name, componentType);
+  }
+
+  private buildLogger(name: string, componentType?: ComponentType) {
     const logger = log.getLogger(name);
     return this.applyPrefix(logger, componentType);
+  }
+
+  private getMethodFactory(
+    methodName: string,
+    logLevel: LogLevelNumbers,
+    loggerName: string
+  ) {
+    return function (...message: any[]) {
+      console.log(...message);
+    };
   }
 
   public global() {

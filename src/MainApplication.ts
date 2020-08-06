@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import "@abraham/reflection";
 import { registerRootComponent } from "expo";
 import App from "App";
 import { container } from "tsyringe";
@@ -7,15 +7,11 @@ import ApplicationLoader from "services/ApplicationLoader";
 import Logging from "services/Logging";
 
 enableScreens();
-
 const loader = container.resolve(ApplicationLoader);
 const logging = container.resolve(Logging);
 
-loader.load().then(() => {
-  logging.global().log("Application loaded.");
-});
-
-
-
-
 registerRootComponent(App);
+
+loader.load().then(() => {
+  logging.global().info("Application loaded.");
+});

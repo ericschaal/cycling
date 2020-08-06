@@ -6,7 +6,6 @@ import {
 import { observer } from "mobx-react";
 import { container } from "tsyringe";
 import UIConfiguration from "@configuration/UIConfiguration";
-import {Roboto_400Regular} from '@expo-google-fonts/roboto';
 
 const uiConfiguration = container.resolve(UIConfiguration);
 

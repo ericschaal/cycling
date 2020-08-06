@@ -13,7 +13,15 @@ export default class Authentication {
   }
 
   public async signIn() {
-    this._isSignedIn = true;
+    if (this._isSignedIn) {
+      throw new Error("Already signed in.");
+    }
+    try {
+      await this.network.userAccount.login("eschaaal", "sludge196");
+      this._isSignedIn = true;
+    } catch (e) {
+      console.log(e.message);
+    }
   }
   public async signOut() {
     this._isSignedIn = false;

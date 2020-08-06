@@ -1,74 +1,82 @@
-import { DarkTheme, DefaultTheme, Theme } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme as DefaultNavigatorTheme,
+  Theme as NavigatorTheme,
+} from "@react-navigation/native";
 import { Appearance } from "react-native";
 import { computed, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AppearancePreferences = Appearance.AppearancePreferences;
 import configuration from "@ioc/mappings/configuration";
 import Colors from "@constants/Colors";
+import { default as my01Theme } from "@assets/ui/eva-my01-theme.json";
+import * as eva from "@eva-design/eva";
 
 @configuration("UIConfiguration")
 export default class UIConfiguration {
-  @observable private colorScheme: "light" | "dark";
+  @observable private _colorScheme: "light" | "dark";
+  private overrideColorScheme: "light" | "dark" | null = "light";
+
+  private darkNavigatorTheme: NavigatorTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      primary: Colors.dark.primary,
+    },
+  };
+
+  private lightNavigatorTheme: NavigatorTheme = {
+    ...DefaultNavigatorTheme,
+    colors: {
+      ...DefaultNavigatorTheme.colors,
+      primary: Colors.light.primary,
+    },
+  };
 
   constructor() {
-    this.colorScheme = "light";
-    //Appearance.addChangeListener(this.onColorSchemeChanged);
+    if (this.overrideColorScheme) {
+      this._colorScheme = this.overrideColorScheme;
+    } else {
+      this._colorScheme = Appearance.getColorScheme() ?? "light";
+      Appearance.addChangeListener(this.onColorSchemeChanged);
+    }
   }
 
   @autobind
   private onColorSchemeChanged(preference: AppearancePreferences) {
-    this.colorScheme = preference.colorScheme ?? "light";
-  }
-
-  private get darkTheme(): Theme {
-    return {
-      ...DarkTheme,
-      colors: {
-        ...DarkTheme.colors,
-        primary: this.darkColors.primary,
-      },
-    };
-  }
-
-  private get lightTheme(): Theme {
-    return {
-      ...DefaultTheme,
-      colors: {
-        ...DefaultTheme.colors,
-        primary: this.lightColors.primary,
-      },
-    };
-  }
-
-  private get darkColors() {
-    return Colors.dark;
-  }
-
-  private get lightColors() {
-    return Colors.light;
+    this._colorScheme = preference.colorScheme ?? "light";
   }
 
   @computed
-  public get theme() {
-    switch (this.colorScheme) {
+  public get uiTheme() {
+    const base = this._colorScheme === "light" ? eva.light : eva.dark;
+    return {
+      ...base,
+      ...my01Theme,
+    };
+  }
+
+  @computed
+  public get navigationTheme() {
+    switch (this._colorScheme) {
       case "dark":
-        return this.darkTheme;
+        return this.darkNavigatorTheme;
       case "light":
-        return this.lightTheme;
+        return this.lightNavigatorTheme;
       default:
-        return this.lightTheme;
+        return this.lightNavigatorTheme;
     }
   }
 
   @computed
   public get colors() {
-    switch (this.colorScheme) {
+    switch (this._colorScheme) {
       case "dark":
-        return this.darkColors;
+        return Colors.dark;
       case "light":
-        return this.lightColors;
+        return Colors.light;
       default:
-        return this.lightColors;
+        return Colors.light;
     }
   }
 
@@ -76,11 +84,15 @@ export default class UIConfiguration {
     props: { light?: string; dark?: string },
     colorName: keyof typeof Colors.light & keyof typeof Colors.dark
   ) {
-    const colorFromProps = props[this.colorScheme];
+    const colorFromProps = props[this._colorScheme];
     if (colorFromProps) {
       return colorFromProps;
     } else {
       return this.colors[colorName];
     }
+  }
+
+  get colorScheme(): "light" | "dark" {
+    return this._colorScheme;
   }
 }

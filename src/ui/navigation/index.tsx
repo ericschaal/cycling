@@ -1,35 +1,66 @@
 import { NavigationContainer, Theme } from "@react-navigation/native";
-import * as React from "react";
-
-import NotFoundScreen from "../screens/NotFoundScreen";
-import { RootStackParamList } from "../../../types";
+import React from "react";
 import LinkingConfiguration from "ui/navigation/LinkingConfiguration";
-import DrawerNavigator from "ui/navigation/DrawerNavigator";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
+import { RootStackParamList } from "ui/navigation/types";
+import DrawerNavigator from "ui/navigation/DrawerNavigator";
+import NotFoundScreen from "@screen/NotFoundScreen";
+import { container } from "tsyringe";
+import Authentication from "services/Authentication";
+import { computed } from "mobx";
+import * as eva from "@eva-design/eva";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import LoginScreen from "@screen/Login";
+import UIConfiguration from "configuration/UIConfiguration";
 
-export default function Navigation({ theme }: { theme: Theme }) {
-  return (
-    <NavigationContainer linking={LinkingConfiguration} theme={theme}>
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
-
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function RootNavigator() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={DrawerNavigator} />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
-    </Stack.Navigator>
-  );
+export default class NavigationRoot extends React.PureComponent {
+  private readonly auth = container.resolve(Authentication);
+  private readonly uiConfig = container.resolve(UIConfiguration);
+
+  @computed
+  private get screensForCurrentAuthenticationStatus() {
+    if (!this.auth.isSignedIn) {
+      return (
+        <>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: "Login", headerShown: false }}
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Stack.Screen name="Root" component={DrawerNavigator} />
+          <Stack.Screen
+            name="NotFound"
+            component={NotFoundScreen}
+            options={{ title: "Oops!" }}
+          />
+        </>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={this.uiConfig.uiTheme}>
+          <NavigationContainer
+            linking={LinkingConfiguration}
+            theme={this.uiConfig.navigationTheme}
+          >
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              {this.screensForCurrentAuthenticationStatus}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ApplicationProvider>
+      </>
+    );
+  }
 }
