@@ -2,11 +2,27 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "es6", "esnext"],
+    "types": ["node", "reflect-metadata"],
     "moduleResolution": "node",
+    "target": "ES6",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@entity/*": ["src/models/entity/*"],
+      "@services/*": ["src/services/*"],
+      "@configuration/*": ["src/configuration/*"],
+      "@constants/*": ["src/constants/*"],
+      "@ui/*": ["src/ui/*"],
+      "@ioc/*": ["src/utils/ioc/*"],
+      "@utils/*": ["src/utils/*"],
+      "*": ["src/*"]
+    }
   }
 }
