@@ -9,7 +9,7 @@ import { autobind } from "core-decorators";
 import AppearancePreferences = Appearance.AppearancePreferences;
 import configuration from "@ioc/mappings/configuration";
 import Colors from "@constants/Colors";
-import { default as my01Theme } from "@assets/ui/eva-my01-theme.json";
+import { default as brandingTheme } from "@assets/ui/eva-theme.json";
 import * as eva from "@eva-design/eva";
 
 @configuration("UIConfiguration")
@@ -52,7 +52,7 @@ export default class UIConfiguration {
     const base = this._colorScheme === "light" ? eva.light : eva.dark;
     return {
       ...base,
-      ...my01Theme,
+      ...brandingTheme,
     };
   }
 

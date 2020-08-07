@@ -1,6 +1,5 @@
 import configuration from "@ioc/mappings/configuration";
 import User from "@entity/User";
-import Device from "@entity/Device";
 
 @configuration("DatabaseConfiguration")
 export default class DatabaseConfiguration {
@@ -10,7 +9,6 @@ export default class DatabaseConfiguration {
   public get entities() {
     return [
       User,
-      Device
     ]
   }
 

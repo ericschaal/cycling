@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my01-client",
-    "slug": "my01-client",
+    "name": "rnn-scaffold",
+    "slug": "rnn-scaffold",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

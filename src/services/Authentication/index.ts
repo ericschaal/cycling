@@ -16,12 +16,8 @@ export default class Authentication {
     if (this._isSignedIn) {
       throw new Error("Already signed in.");
     }
-    try {
-      await this.network.userAccount.login("eschaaal", "sludge196");
-      this._isSignedIn = true;
-    } catch (e) {
-      console.log(e.message);
-    }
+    await this.network.userAccount.login("eschaaal", "sludge196");
+    this._isSignedIn = true;
   }
   public async signOut() {
     this._isSignedIn = false;

@@ -26,7 +26,7 @@ export default class DrawerNavigator extends React.PureComponent {
               <DrawerIcon name="ios-medical" color={color} />
             ),
           }}
-          name={"Devices"}
+          name={"Main"}
           component={BottomTabNavigator}
         />
       </Drawer.Navigator>

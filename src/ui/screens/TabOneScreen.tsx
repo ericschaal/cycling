@@ -5,12 +5,10 @@ import { View, Text } from "ui/components";
 import { observer } from "mobx-react";
 import { container } from "tsyringe";
 import UserStore from "ui/stores/UserStore";
-import DeviceStore from "ui/stores/DeviceStore";
 
 @observer
 export default class TabOneScreen extends React.PureComponent {
   private readonly userStore = container.resolve(UserStore);
-  private readonly deviceStore = container.resolve(DeviceStore);
 
   render() {
     return (
