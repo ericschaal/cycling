@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  Text as DefaultText,
-  TextProps as DefaultTextProps,
-} from "react-native";
+import { Text as DefaultText, TextProps as DefaultTextProps } from "react-native";
 import { observer } from "mobx-react";
 import { container } from "tsyringe";
 import UIConfiguration from "@configuration/UIConfiguration";

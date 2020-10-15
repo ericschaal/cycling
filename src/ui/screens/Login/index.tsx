@@ -36,25 +36,25 @@ export default class LoginScreen extends React.PureComponent {
 
 const styles = StyleService.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   textInputStyle: {
     backgroundColor: "rgba(255,255,255, 0.1)",
     width: "100%",
     padding: 10,
-    color: "black",
+    color: "black"
   },
   imageContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   image: {
-    width: "70%",
+    width: "70%"
   },
   formContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });

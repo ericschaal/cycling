@@ -8,16 +8,16 @@ export default class DatabaseConfiguration {
 
   public get entities() {
     return [
-      User,
-    ]
+      User
+    ];
   }
 
   public get driver() {
-    return require('expo-sqlite');
+    return require("expo-sqlite");
   }
 
   public get name() {
-    return __DEV__ ? "dev" : "prod"
+    return __DEV__ ? "dev" : "prod";
   }
 
   public get synchronize() {

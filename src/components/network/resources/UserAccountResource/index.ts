@@ -10,13 +10,14 @@ export default class UserAccountResource {
     private readonly http: HTTP,
     private readonly ws: WebSocket,
     private readonly config: NetworkConfiguration
-  ) {}
+  ) {
+  }
 
   public async login(username: string, password: string) {
     const response = await this.http.post<void>(this.config.endpoints.login, {
       username,
       password,
-      rememberMe: true,
+      rememberMe: true
     });
     if (!response.ok) {
       if (response.status === 401) {
@@ -26,6 +27,10 @@ export default class UserAccountResource {
       }
     }
   }
-  public async logout() {}
-  public async getAccount() {}
+
+  public async logout() {
+  }
+
+  public async getAccount() {
+  }
 }

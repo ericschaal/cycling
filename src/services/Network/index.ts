@@ -6,8 +6,9 @@ import UserAccountResource from "components/network/resources/UserAccountResourc
 @service("Network")
 export default class Network {
   constructor(
-    public readonly userAccount: UserAccountResource,
-  ) {}
+    public readonly userAccount: UserAccountResource
+  ) {
+  }
 
   getRepository<K, V>(target: ObjectType<V>) {
     return new RemoteRepository<K, V>();

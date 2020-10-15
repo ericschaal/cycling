@@ -1,11 +1,6 @@
 import configuration from "@ioc/mappings/configuration";
 import * as ExpoLocalization from "expo-localization";
-import {
-  LanguageDetectorModule,
-  BackendModule,
-  ReadCallback,
-  ResourceKey,
-} from "i18next";
+import { BackendModule, LanguageDetectorModule, ReadCallback, ResourceKey } from "i18next";
 
 enum LocalizationNamespace {
   COMMON = "common",
@@ -36,15 +31,18 @@ export default class LocalizationConfiguration {
         // files.
         return ExpoLocalization.locale.split("-")[0];
       },
-      init: () => {},
-      cacheUserLanguage: () => {},
+      init: () => {
+      },
+      cacheUserLanguage: () => {
+      }
     };
   }
 
   public get translationLoader(): BackendModule {
     return {
       type: "backend",
-      init: () => {},
+      init: () => {
+      },
       read: (
         language: SupportedLocaleNames,
         namespace: LocalizationNamespace,
@@ -55,13 +53,14 @@ export default class LocalizationConfiguration {
         try {
           resource = this.supportedLocales[language].translationFileLoader()[
             namespace
-          ];
+            ];
           callback(null, resource);
         } catch (e) {
           callback(e, false);
         }
       },
-      create: () => {},
+      create: () => {
+      }
     };
   }
 
@@ -73,12 +72,12 @@ export default class LocalizationConfiguration {
     return {
       [SupportedLocaleNames.EN]: {
         translationFileLoader: () => require("../../assets/lang/en.json"),
-        momentLocaleLoader: () => Promise.resolve(),
+        momentLocaleLoader: () => Promise.resolve()
       },
       [SupportedLocaleNames.FR]: {
         translationFileLoader: () => require("../../assets/lang/fr.json"),
-        momentLocaleLoader: () => require("moment/locale/fr"),
-      },
+        momentLocaleLoader: () => require("moment/locale/fr")
+      }
     };
   }
 }

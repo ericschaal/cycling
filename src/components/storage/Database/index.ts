@@ -23,7 +23,7 @@ export default class Database {
         driver: this.config.driver,
         entities: this.config.entities,
         synchronize: this.config.synchronize,
-        type: this.config.databaseType,
+        type: this.config.databaseType
       });
       this.logger.info("Database connection opened.");
     }

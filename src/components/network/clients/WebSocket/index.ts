@@ -3,5 +3,6 @@ import component from "@ioc/mappings/component";
 
 @component("WebSocket")
 export default class WebSocket {
-  constructor(private readonly config: NetworkConfiguration) {}
+  constructor(private readonly config: NetworkConfiguration) {
+  }
 }

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rnn-scaffold",
-    "slug": "rnn-scaffold",
+    "name": "cycling",
+    "slug": "cycling",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -11,6 +11,9 @@
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "experiments": {
+      "turboModules": true
     },
     "updates": {
       "fallbackToCacheTimeout": 0

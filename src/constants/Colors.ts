@@ -7,7 +7,7 @@ export default {
     background: "#dfdfdf",
     tint: primary,
     tabIconDefault: "#ccc",
-    tabIconSelected: primary,
+    tabIconSelected: primary
   },
   dark: {
     primary,
@@ -15,6 +15,6 @@ export default {
     background: "#000",
     tint: primary,
     tabIconDefault: "#ccc",
-    tabIconSelected: primary,
-  },
+    tabIconSelected: primary
+  }
 };

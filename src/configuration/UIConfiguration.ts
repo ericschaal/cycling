@@ -1,16 +1,12 @@
-import {
-  DarkTheme,
-  DefaultTheme as DefaultNavigatorTheme,
-  Theme as NavigatorTheme,
-} from "@react-navigation/native";
+import { DarkTheme, DefaultTheme as DefaultNavigatorTheme, Theme as NavigatorTheme } from "@react-navigation/native";
 import { Appearance } from "react-native";
 import { computed, observable } from "mobx";
 import { autobind } from "core-decorators";
-import AppearancePreferences = Appearance.AppearancePreferences;
 import configuration from "@ioc/mappings/configuration";
 import Colors from "@constants/Colors";
 import { default as brandingTheme } from "@assets/ui/eva-theme.json";
 import * as eva from "@eva-design/eva";
+import AppearancePreferences = Appearance.AppearancePreferences;
 
 @configuration("UIConfiguration")
 export default class UIConfiguration {
@@ -21,16 +17,16 @@ export default class UIConfiguration {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      primary: Colors.dark.primary,
-    },
+      primary: Colors.dark.primary
+    }
   };
 
   private lightNavigatorTheme: NavigatorTheme = {
     ...DefaultNavigatorTheme,
     colors: {
       ...DefaultNavigatorTheme.colors,
-      primary: Colors.light.primary,
-    },
+      primary: Colors.light.primary
+    }
   };
 
   constructor() {
@@ -52,7 +48,7 @@ export default class UIConfiguration {
     const base = this._colorScheme === "light" ? eva.light : eva.dark;
     return {
       ...base,
-      ...brandingTheme,
+      ...brandingTheme
     };
   }
 

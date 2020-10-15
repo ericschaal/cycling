@@ -1,8 +1,8 @@
 import { action, observable } from "mobx";
 
 export default class LoginScreenStore {
-  @observable private _usernameInput: string = ""
-  @observable private _passwordInput: string = ""
+  @observable private _usernameInput: string = "";
+  @observable private _passwordInput: string = "";
 
 
   @action

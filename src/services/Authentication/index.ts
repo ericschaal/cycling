@@ -6,7 +6,8 @@ import service from "@ioc/mappings/service";
 export default class Authentication {
   @observable private _isSignedIn: boolean = false;
 
-  constructor(private network: Network) {}
+  constructor(private network: Network) {
+  }
 
   public get isSignedIn() {
     return this._isSignedIn;
@@ -16,9 +17,10 @@ export default class Authentication {
     if (this._isSignedIn) {
       throw new Error("Already signed in.");
     }
-    await this.network.userAccount.login("eschaaal", "sludge196");
+    //await this.network.userAccount.login("eschaaal", "sludge196");
     this._isSignedIn = true;
   }
+
   public async signOut() {
     this._isSignedIn = false;
   }

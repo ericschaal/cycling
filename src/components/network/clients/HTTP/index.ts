@@ -19,12 +19,12 @@ export default class HTTP {
 
   constructor(private readonly config: NetworkConfiguration, logging: Logging) {
     this.instance = create({
-      baseURL: config.baseURL,
+      baseURL: config.baseURL
     });
     this.logger = logging.get(HTTP);
 
-    this.instance.addRequestTransform(LoggingMonitor.getRequestTransform(this.logger))
-    this.instance.addResponseTransform(LoggingMonitor.getResponseTransform(this.logger))
+    this.instance.addRequestTransform(LoggingMonitor.getRequestTransform(this.logger));
+    this.instance.addResponseTransform(LoggingMonitor.getResponseTransform(this.logger));
   }
 
   public post<T>(url: string, data?: any, axiosConfig?: AxiosRequestConfig) {

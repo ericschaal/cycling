@@ -33,6 +33,7 @@ export default class DataManagement {
   public localRepository<T>(target: ObjectType<T> | EntitySchema<T> | string) {
     return this.connection.getRepository(target);
   }
+
   public remoteRepository<K, V>(target: ObjectType<V>) {
     return this.net.getRepository<K, V>(target);
   }

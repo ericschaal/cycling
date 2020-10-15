@@ -1,10 +1,8 @@
 import * as React from "react";
-import {
-  ViewProps as DefaultViewProps,
-  View as DefaultView,
-} from "react-native";
+import { View as DefaultView, ViewProps as DefaultViewProps } from "react-native";
 import { container } from "tsyringe";
 import UIConfiguration from "@configuration/UIConfiguration";
+
 const uiConfiguration = container.resolve(UIConfiguration);
 
 type ViewProps = { lightColor?: string; darkColor?: string } & DefaultViewProps;

@@ -6,7 +6,7 @@ import { ComponentType } from "@ioc/types/ComponentType";
 export default function configuration<T>(
   name: string
 ): (target: constructor<T>) => void {
-  return function (target: constructor<T>): void {
+  return function(target: constructor<T>): void {
     Reflect.defineMetadata(componentNameKey, name, target);
     Reflect.defineMetadata(
       componentTypeKey,

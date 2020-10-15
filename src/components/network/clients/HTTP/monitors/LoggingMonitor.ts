@@ -1,9 +1,5 @@
 import { Logger } from "loglevel";
-import {
-  ApiResponse,
-  RequestTransform,
-  ResponseTransform,
-} from "apisauce";
+import { ApiResponse, RequestTransform, ResponseTransform } from "apisauce";
 import { AxiosRequestConfig } from "axios";
 
 export default class LoggingMonitor {

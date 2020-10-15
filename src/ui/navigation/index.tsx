@@ -1,10 +1,10 @@
-import { NavigationContainer, Theme } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import LinkingConfiguration from "ui/navigation/LinkingConfiguration";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import { RootStackParamList } from "ui/navigation/types";
-import DrawerNavigator from "ui/navigation/DrawerNavigator";
-import NotFoundScreen from "@screen/NotFoundScreen";
+import DrawerNavigator from "ui/navigation/DrawerNavigation/DrawerNavigator";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { container } from "tsyringe";
 import Authentication from "services/Authentication";
 import { computed } from "mobx";
@@ -24,41 +24,32 @@ export default class NavigationRoot extends React.PureComponent {
   private get screensForCurrentAuthenticationStatus() {
     if (!this.auth.isSignedIn) {
       return (
-        <>
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ title: "Login", headerShown: false }}
-          />
-        </>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: "Login", headerShown: false }}
+        />
       );
     } else {
-      return (
-        <>
-          <Stack.Screen name="Root" component={DrawerNavigator} />
-          <Stack.Screen
-            name="NotFound"
-            component={NotFoundScreen}
-            options={{ title: "Oops!" }}
-          />
-        </>
-      );
+      return <Stack.Screen name="Root" component={DrawerNavigator}/>;
     }
   }
 
   render() {
     return (
       <>
-        <IconRegistry icons={EvaIconsPack} />
+        <IconRegistry icons={EvaIconsPack}/>
         <ApplicationProvider {...eva} theme={this.uiConfig.uiTheme}>
-          <NavigationContainer
-            linking={LinkingConfiguration}
-            theme={this.uiConfig.navigationTheme}
-          >
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              {this.screensForCurrentAuthenticationStatus}
-            </Stack.Navigator>
-          </NavigationContainer>
+          <SafeAreaProvider>
+            <NavigationContainer
+              linking={LinkingConfiguration}
+              theme={this.uiConfig.navigationTheme}
+            >
+              <Stack.Navigator screenOptions={{ headerShown: false }}>
+                {this.screensForCurrentAuthenticationStatus}
+              </Stack.Navigator>
+            </NavigationContainer>
+          </SafeAreaProvider>
         </ApplicationProvider>
       </>
     );

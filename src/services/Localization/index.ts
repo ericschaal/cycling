@@ -4,7 +4,8 @@ import LocalizationConfiguration from "@configuration/LocalizationConfiguration"
 
 @service("Localization")
 export default class Localization {
-  constructor(private config: LocalizationConfiguration) {}
+  constructor(private config: LocalizationConfiguration) {
+  }
 
   public async init() {
     await i18next
@@ -14,8 +15,8 @@ export default class Localization {
         fallbackLng: this.config.fallbackLanguage,
         ns: this.config.namespaces,
         interpolation: {
-          escapeValue: false,
-        },
+          escapeValue: false
+        }
       });
   }
 

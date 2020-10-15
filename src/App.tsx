@@ -1,6 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from "ui/navigation";
 import { container } from "tsyringe";
 import { observer } from "mobx-react";
@@ -12,7 +10,7 @@ export default class App extends React.PureComponent {
 
   render() {
     if (this.loader.loadingCompleted) {
-      return <Navigation />;
+      return <Navigation/>;
     } else {
       return null;
     }

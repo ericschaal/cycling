@@ -1,5 +1,6 @@
 declare global {
   namespace NodeJS {
-    interface Global {}
+    interface Global {
+    }
   }
 }

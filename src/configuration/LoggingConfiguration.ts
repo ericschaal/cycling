@@ -4,7 +4,8 @@ import ApplicationConfiguration from "configuration/ApplicationConfiguration";
 
 @configuration("LocalizationConfiguration")
 export default class LoggingConfiguration {
-  constructor(private appConfig: ApplicationConfiguration) {}
+  constructor(private appConfig: ApplicationConfiguration) {
+  }
 
   public readonly LogLevel: LogLevelDesc = "trace";
   public readonly ansiColorMode: boolean = true;

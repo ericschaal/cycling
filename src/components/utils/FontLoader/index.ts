@@ -1,11 +1,7 @@
 import component from "@ioc/mappings/component";
-import { Ionicons } from '@expo/vector-icons';
-import * as Font from 'expo-font';
-import {
-  Roboto_400Regular,
-  Roboto_300Light,
-  Roboto_100Thin,
-} from '@expo-google-fonts/roboto';
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
+import { Roboto_100Thin, Roboto_300Light, Roboto_400Regular } from "@expo-google-fonts/roboto";
 import Logging, { Logger } from "services/Logging";
 
 @component("FontLoader")
@@ -22,7 +18,7 @@ export default class FontLoader {
       "roboto-regular": Roboto_400Regular,
       "roboto-light": Roboto_300Light,
       "roboto-thin": Roboto_100Thin,
-      'space-mono': require('@assets/fonts/SpaceMono-Regular.ttf'),
+      "space-mono": require("@assets/fonts/SpaceMono-Regular.ttf")
     });
     this.logger.info("Finished loading fonts.");
   }

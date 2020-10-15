@@ -1,12 +1,13 @@
 import DataManagement from "services/DataManagement";
-import { computed, observable, runInAction } from "mobx";
+import { observable, runInAction } from "mobx";
 import { Repository } from "typeorm";
 import RemoteRepository from "@services/DataManagement/repository/RemoteRepository";
 
 export abstract class KeyValueStore<K, V> {
   @observable protected readonly data: Map<K, V> = new Map<K, V>();
 
-  protected constructor(protected manager: DataManagement) {}
+  protected constructor(protected manager: DataManagement) {
+  }
 
   public async rehydrate() {
     const loaded = await this.local.find();
@@ -18,6 +19,7 @@ export abstract class KeyValueStore<K, V> {
   }
 
   protected abstract get local(): Repository<V>;
+
   protected abstract get remote(): RemoteRepository<K, V>;
 
   public async get(id: K): Promise<V | null> {
