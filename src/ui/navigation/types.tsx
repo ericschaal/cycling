@@ -5,12 +5,12 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  InUse: undefined;
+  Dashboard: undefined;
   Used: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type DashboardParamList = {
+  Dashboard: undefined;
 };
 
 export type TabTwoParamList = {

@@ -6,6 +6,7 @@ import FontLoader from "components/utils/FontLoader";
 import DataManagement from "services/DataManagement";
 import Logging, { Logger } from "services/Logging";
 import Authentication from "services/Authentication";
+import LocationManager from "services/LocationManager";
 
 @service("ApplicationLoader")
 export default class ApplicationLoader {
@@ -14,10 +15,11 @@ export default class ApplicationLoader {
   private readonly logger: Logger;
 
   constructor(
-    private localization: Localization,
-    private fontLoader: FontLoader,
-    private data: DataManagement,
-    private auth: Authentication,
+    private readonly localization: Localization,
+    private readonly fontLoader: FontLoader,
+    private readonly data: DataManagement,
+    private readonly auth: Authentication,
+    private readonly location: LocationManager,
     logging: Logging
   ) {
     this.logger = logging.get(ApplicationLoader);
@@ -30,7 +32,6 @@ export default class ApplicationLoader {
     try {
       await Promise.all(this.parallelStream);
       this.logger.trace("Finished executing parallel stream.");
-
       await this.sequentialStream();
       this.logger.trace("Finished executing sequential stream.");
     } catch (e) {
@@ -52,7 +53,9 @@ export default class ApplicationLoader {
   }
 
   private async sequentialStream() {
+    await this.location.requestPermission();
     await this.auth.signIn();
+    await this.location.startLocationUpdates();
     // E.g.
     // await Promise.resolve();
     // [...]

@@ -1,6 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import * as React from "react";
 
 export default function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <AntDesign size={24} style={{ marginBottom: 0 }} {...props} />;
 }

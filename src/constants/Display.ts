@@ -1,0 +1,1 @@
+export const INVALID_STRING_MARKER = "--";

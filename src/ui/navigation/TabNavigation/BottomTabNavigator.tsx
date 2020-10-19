@@ -6,24 +6,26 @@ import UIConfiguration from "configuration/UIConfiguration";
 import { DashboardTabNavigator } from "ui/navigation/TabNavigation/Tabs/DashboardTab";
 import TabBarIcon from "ui/navigation/TabNavigation/TabBarIcon";
 
+
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default class BottomTabNavigator extends React.PureComponent {
   private uiConfig = container.resolve(UIConfiguration);
 
+
   render() {
     return (
       <BottomTab.Navigator
-        initialRouteName="InUse"
+        initialRouteName="Dashboard"
         tabBarOptions={{ activeTintColor: this.uiConfig.colors.tint }}
       >
         <BottomTab.Screen
-          name="InUse"
+          name="Dashboard"
           component={DashboardTabNavigator}
           options={{
-            title: "In Use",
+            title: "Dashboard",
             tabBarIcon: ({ color }) => (
-              <TabBarIcon name="ios-pulse" color={color}/>
+              <TabBarIcon name="dashboard" color={color}/>
             )
           }}
         />
